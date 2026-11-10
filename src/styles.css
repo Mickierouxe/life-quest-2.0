@@ -199,7 +199,9 @@ h3 {
   font-size: 10px;
   letter-spacing: 2px;
   color: var(--gold);
+  padding: 5px 10px;
 }
+
 
 /* MOBILE */
 
@@ -763,6 +765,10 @@ h3 {
 
 /* PUNCH CARDS */
 
+.punch-cards-page  {
+  padding: 60px 32px 50px;
+}
+
 .punch-form {
   display: grid;
   gap: 16px;
@@ -822,7 +828,8 @@ h3 {
   align-items: center;
   justify-content: center;
   gap: 8px;
-  padding: 11px 16px;
+  margin: 5px 10px 10px 15px;
+  padding: 10px 16px;
   border-radius: 9px;
   font-weight: 600;
   transition: 0.2s ease;
@@ -1055,7 +1062,7 @@ h3 {
 /* BURST MODE */
 
 .burst-page {
-  padding-bottom: 50px;
+  padding: 60px 32px 50px;
 }
 
 .burst-chamber {
@@ -1442,7 +1449,7 @@ h3 {
 /* COLLECTIONS PAGE */
 
 .collections-page {
-  padding-bottom: 50px;
+   padding: 60px 32px 50px;
 }
 
 .collection-welcome {
@@ -1846,7 +1853,8 @@ h3 {
   padding: 60px 32px 50px;
 }
 
-.life-log-page .page-heading {
+.life-log-page .page-heading .h1 {
+  margin: 27px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -1854,7 +1862,7 @@ h3 {
   margin-bottom: 35px;
 }
 
-.life-log-page .page-heading h1 {
+.life-log-page .page-heading .h1 {
   margin: 10px 0 5px;
   color: var(--parchment);
   font-size: clamp(32px, 4vw, 45px);

@@ -276,12 +276,16 @@ export default function PunchCards() {
   const activeCards = cards.filter((card) => card.status !== 'retired');
   const retiredCards = cards.filter((card) => card.status === 'retired');
 
+  function deletePunchCard(id: number) {
+    setCards((current) => current.filter((card) => card.id !== id));
+  }
+
   return (
     <div className="punch-cards-page">
       <div className="page-heading">
         <div>
           <p className="eyebrow">Little efforts, lovely rewards</p>
-          <h1>Punch Cards</h1>
+          <h1 className="h1">Punch Cards</h1>
           <p>Collect your stamps. Earn your rewards. Keep your magic moving.</p>
         </div>
 
@@ -370,7 +374,7 @@ export default function PunchCards() {
             <input
               value={reward}
               onChange={(event) => setReward(event.target.value)}
-              placeholder="A new book, a game night, a little treat..."
+              placeholder="A new book, a game night..."
               required
             />
           </label>
@@ -428,6 +432,15 @@ export default function PunchCards() {
                   );
                 })}
               </div>
+                <div>
+                  <button
+                    className="delete-button"
+                    onClick={() => deletePunchCard(card.id)}
+                  >
+                    <Archive size={16} />
+                    Delete Card
+                  </button>
+                </div>
 
               <div className="punch-progress">
                 <div className="progress-label">
