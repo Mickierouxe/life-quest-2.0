@@ -20,7 +20,8 @@ type CompletedRound = {
   reward: string;
 };
 
-type PunchCard = {
+type PunchCard = {//Defines type for punch card. 
+  isCollapsed: boolean;
   id: number;
   title: string;
   description: string;
@@ -36,7 +37,7 @@ type PunchCard = {
 
 const STORAGE_KEY = 'lifeQuest_punchCards';
 
-function getWeekStart(timestamp: number) {
+function getWeekStart(timestamp: number) {//Getting the start of the week for the timestamp 
   const date = new Date(timestamp);
   date.setHours(0, 0, 0, 0);
 
@@ -47,7 +48,7 @@ function getWeekStart(timestamp: number) {
   return date.getTime();
 }
 
-function isSameDay(first: number, second: number) {
+function isSameDay(first: number, second: number) {//Getting the same day for the first and second timestamp.
   const a = new Date(first);
   const b = new Date(second);
 
@@ -55,10 +56,10 @@ function isSameDay(first: number, second: number) {
     a.getFullYear() === b.getFullYear() &&
     a.getMonth() === b.getMonth() &&
     a.getDate() === b.getDate()
-  );
+  );//Gets date
 }
 
-function getThisWeekCount(stamps: number[]) {
+function getThisWeekCount(stamps: number[]) {//Checks the amount of stamps for the week. 
   const thisWeek = getWeekStart(Date.now());
 
   return stamps.filter(
@@ -66,7 +67,7 @@ function getThisWeekCount(stamps: number[]) {
   ).length;
 }
 
-function getCompletedWeeks(card: PunchCard) {
+function getCompletedWeeks(card: PunchCard) {//Checks the amount of completed weeks for the punch card.
   const weeklyCounts = new Map<number, number>();
 
   card.stamps.forEach((stamp) => {
@@ -79,7 +80,7 @@ function getCompletedWeeks(card: PunchCard) {
   ).length;
 }
 
-function isCardComplete(card: PunchCard) {
+function isCardComplete(card: PunchCard) {//Checks if its complete or not. 
   if (card.frequency === 'weekly') {
     return getCompletedWeeks(card) >= card.weeksGoal;
   }
@@ -95,8 +96,9 @@ function loadCards(): PunchCard[] {
 
     const parsed = JSON.parse(saved);
 
-    return parsed.map((card: any) => ({
+    return parsed.map((card: any) => ({//
       id: card.id,
+      isCollapsed: card.isCollapsed ?? true,
       title: card.title,
       description: card.description || '',
       frequency: card.frequency || 'anytime',
@@ -118,7 +120,7 @@ function loadCards(): PunchCard[] {
   }
 }
 
-export default function PunchCards() {
+export default function PunchCards() {//The overal function for the punch cards. 
   const [cards, setCards] = useState<PunchCard[]>(loadCards);
 
   const [showForm, setShowForm] = useState(false);
@@ -130,7 +132,7 @@ export default function PunchCards() {
   const [weeksGoal, setWeeksGoal] = useState('4');
   const [reward, setReward] = useState('');
 
-  useEffect(() => {
+  useEffect(() => {//This stores the card info to your local storage for now. 
     localStorage.setItem(STORAGE_KEY, JSON.stringify(cards));
   }, [cards]);
 
@@ -139,8 +141,9 @@ export default function PunchCards() {
 
     if (!title.trim() || !reward.trim()) return;
 
-    const newCard: PunchCard = {
+    const newCard: PunchCard = {//Creates a new punch card w the info below -- edit this if you need to add more info to the punch card.--EDIT PUNCH CARD INFO HERE
       id: Date.now(),
+      isCollapsed: true,
       title: title.trim(),
       description: description.trim(),
       frequency,
@@ -153,8 +156,9 @@ export default function PunchCards() {
       history: [],
     };
 
-    setCards((current) => [...current, newCard]);
+    setCards((current) => [...current, newCard]);//Adds the new card to the current cards.
 
+    //Clears fields 
     setTitle('');
     setDescription('');
     setFrequency('anytime');
@@ -165,7 +169,7 @@ export default function PunchCards() {
     setShowForm(false);
   }
 
-  function canEarnStamp(card: PunchCard) {
+  function canEarnStamp(card: PunchCard) {//Checks the frequency and if you can get another stamp 
     if (card.status !== 'active') return false;
 
     if (card.frequency === 'daily') {
@@ -179,7 +183,7 @@ export default function PunchCards() {
     return true;
   }
 
-  function earnStamp(id: number) {
+  function earnStamp(id: number) {//Adds a stamp to the card. 
     setCards((current) =>
       current.map((card) => {
         if (card.id !== id || !canEarnStamp(card)) return card;
@@ -198,7 +202,7 @@ export default function PunchCards() {
     );
   }
 
-  function startAnotherRound(id: number) {
+  function startAnotherRound(id: number) {//Start another round for the same card. 
     setCards((current) =>
       current.map((card) => {
         if (card.id !== id) return card;
@@ -220,7 +224,7 @@ export default function PunchCards() {
     );
   }
 
-  function retireCard(id: number) {
+  function retireCard(id: number) {//Once a card is complete do this. 
     setCards((current) =>
       current.map((card) => {
         if (card.id !== id) return card;
@@ -241,7 +245,7 @@ export default function PunchCards() {
     );
   }
 
-  function getProgress(card: PunchCard) {
+  function getProgress(card: PunchCard) {//Shows the progress of the card. 
     if (card.frequency === 'weekly') {
       return getCompletedWeeks(card);
     }
@@ -249,13 +253,13 @@ export default function PunchCards() {
     return card.stamps.length;
   }
 
-  function getGoal(card: PunchCard) {
+  function getGoal(card: PunchCard) {//Get the goal 
     return card.frequency === 'weekly'
       ? card.weeksGoal
       : card.stampGoal;
   }
 
-  function getProgressLabel(card: PunchCard) {
+  function getProgressLabel(card: PunchCard) {//progress label for the card.
     if (card.frequency === 'weekly') {
       return `${getThisWeekCount(card.stamps)} / ${card.weeklyTarget} this week`;
     }
@@ -267,7 +271,7 @@ export default function PunchCards() {
     return `${card.stamps.length} / ${card.stampGoal} stamps`;
   }
 
-  function getFrequencyLabel(card: PunchCard) {
+  function getFrequencyLabel(card: PunchCard) {//frequency types 
     if (card.frequency === 'daily') return 'Daily';
     if (card.frequency === 'weekly') return 'Weekly';
     return 'Anytime';
@@ -276,11 +280,20 @@ export default function PunchCards() {
   const activeCards = cards.filter((card) => card.status !== 'retired');
   const retiredCards = cards.filter((card) => card.status === 'retired');
 
-  function deletePunchCard(id: number) {
+  function deletePunchCard(id: number) {//deleted card
     setCards((current) => current.filter((card) => card.id !== id));
   }
 
-  return (
+  function collapseCard(id: number) {//collpases card 
+    setCards((current) =>
+      current.map((card) => {
+        if (card.id !== id) return card;
+        return { ...card, isCollapsed: !card.isCollapsed };
+      })
+    );
+  }
+
+  return (//start of html ect 
     <div className="punch-cards-page">
       <div className="page-heading">
         <div>
@@ -296,11 +309,15 @@ export default function PunchCards() {
           <Plus size={18} />
           New Punch Card
         </button>
+
+        
       </div>
+      
 
       {showForm && (
         <form className="punch-form" onSubmit={createCard}>
           <h2>Create a Punch Card</h2>
+          
 
           <label>
             Card name
@@ -403,7 +420,10 @@ export default function PunchCards() {
           const canStamp = canEarnStamp(card);
 
           return (
-            <div className="punch-card" key={card.id}>
+            <div
+              className={`punch-card ${card.isCollapsed ? 'is-collapsed' : 'is-expanded'} ${complete ? 'is-complete' : ''}`}
+              key={card.id}
+            >
               <div className="punch-card-top">
                 <span className="frequency-label">
                   {getFrequencyLabel(card)}
@@ -416,31 +436,9 @@ export default function PunchCards() {
               </div>
 
               <h2>{card.title}</h2>
-              <p className="punch-description">{card.description}</p>
-
-              <div className="stamp-grid">
-                {Array.from({ length: goal }).map((_, index) => {
-                  const filled = index < progress;
-
-                  return (
-                    <div
-                      className={`stamp-slot ${filled ? 'filled' : ''}`}
-                      key={index}
-                    >
-                      {filled ? <Sparkles size={17} /> : <span>✧</span>}
-                    </div>
-                  );
-                })}
-              </div>
-                <div>
-                  <button
-                    className="delete-button"
-                    onClick={() => deletePunchCard(card.id)}
-                  >
-                    <Archive size={16} />
-                    Delete Card
-                  </button>
-                </div>
+              {card.description && (
+                <p className="punch-description">{card.description}</p>
+              )}
 
               <div className="punch-progress">
                 <div className="progress-label">
@@ -455,65 +453,110 @@ export default function PunchCards() {
                 </div>
               </div>
 
-              {card.frequency === 'weekly' && !complete && (
-                <p className="weekly-note">
-                  <CalendarDays size={14} />
-                  {getCompletedWeeks(card)} of {card.weeksGoal} weeks completed
-                </p>
-              )}
+              <button
+                type="button"
+                className="card-toggle"
+                onClick={() => collapseCard(card.id)}
+                aria-controls={`punch-card-details-${card.id}`}
+                aria-expanded={!card.isCollapsed}
+              >
+                <Stamp size={16} />
+                {card.isCollapsed ? 'Reveal stamps' : 'Hide card details'}
+              </button>
 
-              <div className="punch-reward">
-                <Gift size={18} />
-                <div>
-                  <span>Reward</span>
-                  <strong>{card.reward}</strong>
-                </div>
-              </div>
+              {!card.isCollapsed && (
+                <div
+                  className="punch-card-details"
+                  id={`punch-card-details-${card.id}`}
+                >
+                  <div className="stamp-grid">
+                    {Array.from({ length: goal }).map((_, index) => {
+                      const filled = index < progress;
 
-              {complete ? (
-                <div className="completion-actions">
-                  <p className="completion-message">
-                    <Sparkles size={16} />
-                    Card completed! You earned your reward!
-                  </p>
+                      return (
+                        <div
+                          className={`stamp-slot ${filled ? 'filled' : ''}`}
+                          key={index}
+                        >
+                          {filled ? <Sparkles size={17} /> : <span>✧</span>}
+                        </div>
+                      );
+                    })}
+                  </div>
+
+                  {card.frequency === 'weekly' && !complete && (
+                    <p className="weekly-note">
+                      <CalendarDays size={14} />
+                      {getCompletedWeeks(card)} of {card.weeksGoal} weeks completed
+                    </p>
+                  )}
+
+                  <div className="punch-reward">
+                    <Gift size={18} />
+                    <div>
+                      <span>Reward</span>
+                      <strong>{card.reward}</strong>
+                    </div>
+                  </div>
+
+                  {complete ? (
+                    <div className="completion-actions">
+                      <p className="completion-message">
+                        <Sparkles size={16} />
+                        Card completed! You earned your reward!
+                      </p>
+
+                      <button
+                        type="button"
+                        className="primary-button"
+                        onClick={() => startAnotherRound(card.id)}
+                      >
+                        <RotateCcw size={16} />
+                        Start another round
+                      </button>
+
+                      <button
+                        type="button"
+                        className="secondary-button"
+                        onClick={() => retireCard(card.id)}
+                      >
+                        <Archive size={16} />
+                        Retire this card
+                      </button>
+                    </div>
+                  ) : (
+                    <button
+                      type="button"
+                      className="stamp-button"
+                      onClick={() => earnStamp(card.id)}
+                      disabled={!canStamp}
+                    >
+                      <Stamp size={17} />
+                      {canStamp
+                        ? 'Earn a Stamp'
+                        : card.frequency === 'daily'
+                          ? 'Already stamped today'
+                          : 'Weekly target reached'}
+                    </button>
+                  )}
+
+                  {card.history.length > 0 && (
+                    <p className="round-history">
+                      <Archive size={13} />
+                      {card.history.length} previous round
+                      {card.history.length === 1 ? '' : 's'} completed
+                    </p>
+                  )}
 
                   <button
-                    className="primary-button"
-                    onClick={() => startAnotherRound(card.id)}
-                  >
-                    <RotateCcw size={16} />
-                    Start another round
-                  </button>
-
-                  <button
-                    className="secondary-button"
-                    onClick={() => retireCard(card.id)}
+                    type="button"
+                    className="delete-button"
+                    onClick={() => deletePunchCard(card.id)}
                   >
                     <Archive size={16} />
-                    Retire this card
+                    Delete Card
                   </button>
                 </div>
-              ) : (
-                <button
-                  className="stamp-button"
-                  onClick={() => earnStamp(card.id)}
-                  disabled={!canStamp}
-                >
-                  <Stamp size={17} />
-                  {canStamp
-                    ? 'Earn a Stamp'
-                    : card.frequency === 'daily'
-                      ? 'Already stamped today'
-                      : 'Weekly target reached'}
-                </button>
-              )}
-
-              {card.history.length > 0 && (
-                <p className="round-history">
-                  <Archive size={13} />
-                  {card.history.length} previous round
-                  {card.history.length === 1 ? '' : 's'} completed
-                </p>
               )}
             </div>
           );
