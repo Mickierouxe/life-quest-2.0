@@ -110,7 +110,9 @@ export default function App() {
         {activePage === 'Home' ? (
     <Home onNavigate={setActivePage} />
     ) : (
-        <ActivePage />
+        <ActivePage onNavigate={function (page: string): void {
+              throw new Error('Function not implemented.');
+            } } />
     )}
       </main>
 
