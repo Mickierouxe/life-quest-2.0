@@ -4,7 +4,7 @@
   "version": "0.1.0",
   "type": "module",
   "scripts": {
-    "start": "npm run start",
+    "start": "vite",
     "dev": "vite",
     "build": "tsc -b && node ./node_modules/vite/bin/vite.js build",
     "preview": "vite preview"
