@@ -1,0 +1,323 @@
+
+/* =================================
+   LIFE QUEST - CAMPAIGN JOURNAL
+================================= */
+
+.journal-page {
+  color: #57402f;
+  padding: 24px;
+  min-height: 100%;
+}
+
+.journal-back {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: none;
+  background: transparent;
+  color: #e5c99a;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+/* Journal tabs */
+
+.journal-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: -1px;
+  position: relative;
+  z-index: 2;
+}
+
+.journal-tab {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 13px 18px;
+  border: 1px solid #b99a70;
+  border-radius: 12px 12px 0 0;
+  background: #e6d2ad;
+  color: #674a34;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.2s;
+}
+
+.journal-tab:hover {
+  background: #f5e8ce;
+}
+
+.journal-tab.active {
+  background: #f3e5c8;
+  border-bottom-color: #f3e5c8;
+}
+
+/* Main book */
+
+.journal-book {
+  background:
+    linear-gradient(
+      90deg,
+      rgba(124, 83, 49, 0.07),
+      transparent 8%,
+      transparent 92%,
+      rgba(124, 83, 49, 0.07)
+    ),
+    #f3e5c8;
+  border: 2px solid #b99a70;
+  border-radius: 4px 14px 14px 4px;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  padding: 30px;
+}
+
+/* Two-page spread */
+
+.journal-spread {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+}
+
+.journal-left-page,
+.journal-right-page {
+  min-width: 0;
+  padding: 12px;
+}
+
+.journal-left-page {
+  border-right: 1px solid rgba(128, 91, 57, 0.25);
+  padding-right: 32px;
+}
+
+.journal-ribbon {
+  display: inline-block;
+  background: #d5aa72;
+  color: #5b3d28;
+  padding: 8px 18px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.journal-left-page h1,
+.journal-placeholder h1 {
+  font-family: Georgia, serif;
+  font-size: clamp(30px, 4vw, 48px);
+  line-height: 1.1;
+  color: #62432e;
+  margin: 24px 0 12px;
+}
+
+.journal-decoration {
+  color: #a97845;
+  margin: 15px 0;
+  text-align: center;
+}
+
+.journal-description {
+  font-family: Georgia, serif;
+  font-size: 17px;
+  line-height: 1.7;
+  color: #694c37;
+  margin-bottom: 30px;
+}
+
+/* Progress */
+
+.journal-progress,
+.journal-details,
+.journal-milestones {
+  background: rgba(255, 248, 231, 0.55);
+  border: 1px solid #d2b58b;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 22px;
+}
+
+.journal-progress h2,
+.journal-details h2,
+.journal-milestones h2 {
+  font-family: Georgia, serif;
+  color: #67472f;
+  margin: 0 0 16px;
+}
+
+.journal-progress-row {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.journal-progress-row strong {
+  color: #8a6740;
+  font-size: 22px;
+}
+
+.journal-progress-track {
+  height: 13px;
+  flex: 1;
+  background: #ddc5a1;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.journal-progress-fill {
+  height: 100%;
+  background: #82916b;
+  border-radius: 20px;
+  transition: width 0.3s ease;
+}
+
+.journal-progress p {
+  font-size: 13px;
+  color: #81674e;
+  margin-bottom: 0;
+}
+
+/* Campaign details */
+
+.journal-detail-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 15px 0;
+  color: #98744c;
+}
+
+.journal-detail-item div {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.journal-detail-item span {
+  font-size: 12px;
+  color: #92775c;
+}
+
+.journal-detail-item strong {
+  color: #614831;
+}
+
+/* Quote */
+
+.journal-quote {
+  font-family: Georgia, serif;
+  font-style: italic;
+  text-align: center;
+  color: #896744;
+  padding: 24px 12px;
+  font-size: 18px;
+}
+
+/* Landscape placeholder */
+
+.journal-landscape {
+  min-height: 250px;
+  border: 2px solid #c5a477;
+  border-radius: 12px;
+  background:
+    radial-gradient(ellipse at 50% 100%, #9ca783 0%, transparent 65%),
+    linear-gradient(145deg, #d5d9bd, #e8c99d 65%, #d4ad85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin-bottom: 24px;
+  overflow: hidden;
+}
+
+.journal-landscape-content {
+  color: #66523b;
+  padding: 20px;
+}
+
+.journal-landscape-content h2 {
+  font-family: Georgia, serif;
+  font-size: 25px;
+}
+
+/* Milestones */
+
+.journal-milestone {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px dashed #d5bd98;
+  color: #674d36;
+  cursor: pointer;
+}
+
+.journal-milestone input {
+  accent-color: #84936e;
+  width: 18px;
+  height: 18px;
+}
+
+.journal-milestone span {
+  flex: 1;
+}
+
+.journal-milestone svg {
+  color: #71845d;
+}
+
+/* Encouragement */
+
+.journal-encouragement {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  color: #94714d;
+  font-family: Georgia, serif;
+  font-style: italic;
+  font-size: 18px;
+}
+
+/* Other tabs */
+
+.journal-placeholder {
+  min-height: 450px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 30px;
+  color: #72553c;
+}
+
+.journal-return {
+  background: #879573;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 20px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+/* Responsive layout */
+
+@media (max-width: 850px) {
+  .journal-spread {
+    grid-template-columns: 1fr;
+  }
+
+  .journal-left-page {
+    border-right: none;
+    border-bottom: 1px solid rgba(128, 91, 57, 0.25);
+    padding-right: 12px;
+    padding-bottom: 25px;
+  }
+
+  .journal-book {
+    padding: 16px;
+  }
+}

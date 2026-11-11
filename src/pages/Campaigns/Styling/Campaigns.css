@@ -1,0 +1,648 @@
+
+/* ==========================================
+   LIFE QUEST - CAMPAIGN LIBRARY
+   Cozy watercolor storybook aesthetic
+========================================== */
+
+.campaigns-page {
+  min-height: 100%;
+  padding: 24px 34px 50px;
+  color: #554431;
+  background-color: #f4ecdc;
+  background-image:
+    radial-gradient(ellipse at 20% 10%, rgba(255,255,255,.65), transparent 45%),
+    radial-gradient(ellipse at 85% 75%, rgba(197,173,135,.12), transparent 45%);
+  font-family: Georgia, "Times New Roman", serif;
+}
+
+/* ==========================================
+   HERO LANDSCAPE
+========================================== */
+
+.campaign-hero {
+  position: relative;
+  min-height: 310px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  isolation: isolate;
+  border: 1px solid #c9b38f;
+  border-radius: 16px;
+  background:
+    linear-gradient(180deg,
+      rgba(216, 220, 196, .35) 0%,
+      rgba(239, 218, 180, .25) 52%,
+      rgba(179, 164, 128, .4) 100%),
+    linear-gradient(165deg, #c6d1bc, #e8d4ae 55%, #b5b89b);
+  box-shadow: inset 0 0 45px rgba(110, 88, 56, .13);
+}
+
+.campaign-hero::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  opacity: .8;
+  background:
+    radial-gradient(ellipse at 15% 80%, #788d70 0 12%, transparent 12.5%),
+    radial-gradient(ellipse at 30% 75%, #a0a984 0 18%, transparent 18.5%),
+    radial-gradient(ellipse at 72% 80%, #8c9a76 0 17%, transparent 17.5%),
+    radial-gradient(ellipse at 90% 75%, #71866c 0 15%, transparent 15.5%),
+    linear-gradient(175deg, transparent 53%, #b5b18d 54% 66%, transparent 67%);
+}
+
+.campaign-hero::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  width: 55%;
+  height: 65px;
+  bottom: 30px;
+  left: 24%;
+  border-radius: 50%;
+  border-top: 9px solid rgba(229, 204, 159, .9);
+  transform: rotate(-8deg);
+  filter: blur(2px);
+}
+
+.hero-brand {
+  position: absolute;
+  top: 20px;
+  left: 25px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #654a32;
+  font-size: 23px;
+}
+
+.hero-paw {
+  font-size: 25px;
+}
+
+.hero-compass {
+  position: absolute;
+  top: 20px;
+  right: 25px;
+  color: rgba(100, 78, 49, .65);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  width: min(650px, 85%);
+  padding: 42px 15px;
+  text-align: center;
+  text-shadow: 0 1px 1px rgba(255,255,255,.5);
+}
+
+.hero-eyebrow {
+  color: #6f7458;
+  font-family: sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 3px;
+}
+
+.hero-content h1 {
+  margin: 12px 0 8px;
+  color: #593f2c;
+  font-size: clamp(34px, 5vw, 55px);
+  font-weight: 500;
+  letter-spacing: -1.5px;
+}
+
+.hero-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  color: #a77a4c;
+  font-size: 23px;
+}
+
+.hero-divider span {
+  width: 75px;
+  height: 1px;
+  background: #a77a4c;
+}
+
+.hero-content p {
+  margin: 7px 0 0;
+  color: #72583f;
+  font-size: 17px;
+  font-style: italic;
+}
+
+.hero-cat {
+  position: absolute;
+  bottom: 31px;
+  left: 8%;
+  font-size: 66px;
+  filter: drop-shadow(2px 4px 2px rgba(70, 55, 37, .2));
+  transform: scaleX(-1);
+}
+
+/* ==========================================
+   LIBRARY HEADING
+========================================== */
+
+.campaign-library {
+  max-width: 1250px;
+  margin: 35px auto 0;
+}
+
+.library-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 23px;
+  padding: 0 5px 17px;
+  border-bottom: 1px solid #d5c3a5;
+}
+
+.library-heading .eyebrow {
+  margin-bottom: 7px;
+  color: #87916f;
+  font-family: sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.library-heading h2 {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  margin: 0;
+  color: #584633;
+  font-size: 29px;
+  font-weight: 500;
+}
+
+.library-heading h2 svg {
+  color: #8b9471;
+}
+
+.library-heading p {
+  margin: 7px 0 0;
+  color: #907e65;
+  font-size: 14px;
+  font-style: italic;
+}
+
+.library-sparkle {
+  color: #bb9060;
+}
+
+/* ==========================================
+   BOOKSHELF LAYOUT
+========================================== */
+
+.library-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 255px;
+  align-items: stretch;
+  gap: 30px;
+}
+
+.bookshelf-area {
+  min-width: 0;
+  padding: 15px 5px 0;
+}
+
+.campaign-bookshelf {
+  min-height: 330px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.book-collection {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 19px;
+  padding: 15px 8px 0;
+}
+
+/* ==========================================
+   INDIVIDUAL CAMPAIGN BOOKS
+========================================== */
+
+.campaign-book {
+  position: relative;
+  width: 185px;
+  height: 270px;
+  display: block;
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid rgba(88, 65, 42, .65);
+  border-radius: 5px 10px 10px 5px;
+  color: #fff5dc;
+  cursor: pointer;
+  text-align: center;
+  box-shadow:
+    3px 5px 8px rgba(67, 48, 30, .23),
+    inset 3px 0 5px rgba(255,255,255,.16);
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+
+.campaign-book:hover {
+  transform: translateY(-10px) rotate(-1deg);
+  box-shadow: 5px 12px 18px rgba(67, 48, 30, .27);
+}
+
+.book-variant-0 {
+  background: linear-gradient(135deg, #75836a, #53644f);
+}
+
+.book-variant-1 {
+  background: linear-gradient(135deg, #c47e64, #995d4d);
+}
+
+.book-variant-2 {
+  background: linear-gradient(135deg, #9a9a78, #6c795f);
+}
+
+.book-variant-3 {
+  background: linear-gradient(135deg, #a98b68, #80644c);
+}
+
+.book-spine {
+  position: absolute;
+  z-index: 3;
+  top: 0;
+  left: 0;
+  width: 17px;
+  height: 100%;
+  border-right: 1px solid rgba(255, 231, 190, .25);
+  background: linear-gradient(90deg, rgba(42, 34, 24, .3), rgba(255,255,255,.12));
+}
+
+.book-cover-inner {
+  position: absolute;
+  inset: 10px 9px 10px 22px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px 8px;
+  border: 1px solid rgba(255, 226, 180, .6);
+  outline: 1px solid rgba(255, 226, 180, .2);
+  outline-offset: -5px;
+}
+
+.book-cover-decoration {
+  color: #e9ce98;
+  font-size: 15px;
+  letter-spacing: 5px;
+}
+
+.book-art {
+  position: relative;
+  width: 125px;
+  height: 100px;
+  flex-shrink: 0;
+  margin: 12px 0 9px;
+  overflow: hidden;
+  border: 3px solid rgba(240, 216, 171, .8);
+  border-radius: 50%;
+  background: linear-gradient(#b8c6bc 0%, #e3cba3 65%, #8e9b76 66%);
+}
+
+.book-art-sun {
+  position: absolute;
+  top: 13px;
+  right: 23px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #e8c68c;
+}
+
+.book-art-mountain {
+  position: absolute;
+  bottom: 22px;
+  width: 75px;
+  height: 65px;
+  background: #788a78;
+  clip-path: polygon(50% 0, 100% 100%, 0 100%);
+}
+
+.mountain-one {
+  left: 2px;
+}
+
+.mountain-two {
+  right: -12px;
+  bottom: 17px;
+  transform: scale(.85);
+  background: #a2a58a;
+}
+
+.book-art-hills {
+  position: absolute;
+  bottom: -20px;
+  left: -15px;
+  width: 160px;
+  height: 60px;
+  border-radius: 50%;
+  background: #637d60;
+}
+
+.book-art-tree {
+  position: absolute;
+  z-index: 2;
+  bottom: 8px;
+  color: #405d45;
+  font-size: 29px;
+}
+
+.tree-one {
+  left: 9px;
+}
+
+.tree-two {
+  right: 8px;
+  bottom: 12px;
+  font-size: 23px;
+}
+
+.book-title-plaque {
+  width: 100%;
+  min-height: 55px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 7px 5px;
+  border: 1px solid rgba(130, 99, 62, .45);
+  border-radius: 3px;
+  background: #eee0bc;
+  color: #60462e;
+  font-size: 16px;
+  line-height: 1.2;
+  overflow-wrap: anywhere;
+  box-shadow: 0 2px 4px rgba(45, 33, 21, .18);
+}
+
+.book-progress-ribbon {
+  min-width: 65px;
+  margin-top: auto;
+  padding: 5px 12px;
+  background: #e5c58c;
+  color: #61472d;
+  font-family: Georgia, serif;
+  font-size: 15px;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 80%, 0 100%);
+}
+
+.book-completion {
+  margin-top: 5px;
+  color: #f2dfb7;
+  font-family: sans-serif;
+  font-size: 8px;
+  letter-spacing: 1px;
+}
+
+/* THE SHELF */
+
+.bookshelf-ledge {
+  position: relative;
+  height: 19px;
+  margin-top: -1px;
+  border: 1px solid #795638;
+  border-radius: 3px;
+  background: linear-gradient(#b58b5e, #896343);
+  box-shadow: 0 7px 10px rgba(66, 46, 28, .18);
+}
+
+.shelf-detail {
+  position: absolute;
+  top: 5px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: rgba(255, 228, 185, .35);
+}
+
+/* ==========================================
+   NEW ADVENTURE INVITATION
+========================================== */
+
+.new-adventure {
+  position: relative;
+  min-height: 330px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 25px 19px;
+  border: 1px solid #d1b995;
+  border-radius: 48% 48% 12px 12px / 15% 15% 12px 12px;
+  background:
+    radial-gradient(ellipse at center, #fff7e7 0%, #eee0c5 75%);
+  box-shadow: inset 0 0 25px rgba(155, 123, 77, .12);
+  text-align: center;
+}
+
+.invitation-star {
+  margin-bottom: 12px;
+  color: #b58a58;
+  font-size: 26px;
+}
+
+.new-adventure .eyebrow {
+  color: #87916f;
+  font-family: sans-serif;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+}
+
+.new-adventure h3 {
+  max-width: 210px;
+  margin: 12px 0;
+  color: #654b32;
+  font-size: 25px;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.new-adventure p {
+  margin: 0;
+  color: #8c785e;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.invitation-book {
+  position: relative;
+  margin: 18px 0;
+  color: #9b805e;
+}
+
+.invitation-sparkle {
+  position: absolute;
+  top: -8px;
+  right: -12px;
+  color: #c39b62;
+}
+
+.begin-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 11px 15px;
+  border: 1px solid #899273;
+  border-radius: 5px;
+  background: #899273;
+  color: #fff9e9;
+  font-family: sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: .2s ease;
+}
+
+.begin-button:hover {
+  transform: translateY(-2px);
+  background: #707e5f;
+}
+
+.invitation-footer {
+  margin-top: 17px;
+  color: #a58c6b;
+  font-family: sans-serif;
+  font-size: 8px;
+  letter-spacing: 1.5px;
+}
+
+/* ==========================================
+   EMPTY BOOKSHELF
+========================================== */
+
+.empty-library {
+  min-height: 310px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+  border: 1px dashed #cbb99b;
+  border-radius: 12px;
+  background: rgba(255, 250, 238, .45);
+  text-align: center;
+}
+
+.empty-book {
+  color: #b38a5e;
+  font-size: 42px;
+}
+
+.empty-library h3 {
+  margin: 10px 0;
+  color: #624c36;
+  font-size: 23px;
+  font-weight: 500;
+}
+
+.empty-library p {
+  max-width: 360px;
+  margin: 0 0 20px;
+  color: #8e7d66;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+/* ==========================================
+   FOOTER
+========================================== */
+
+.library-footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 35px;
+  color: #a28b6c;
+}
+
+.library-footer span {
+  color: #b68c5c;
+}
+
+.library-footer p {
+  font-size: 13px;
+  font-style: italic;
+}
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media (max-width: 900px) {
+  .library-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .new-adventure {
+    min-height: 280px;
+    border-radius: 14px;
+  }
+}
+
+@media (max-width: 600px) {
+  .campaigns-page {
+    padding: 12px 12px 35px;
+  }
+
+  .campaign-hero {
+    min-height: 260px;
+  }
+
+  .hero-brand {
+    top: 14px;
+    left: 14px;
+    font-size: 18px;
+  }
+
+  .hero-compass {
+    top: 12px;
+    right: 12px;
+  }
+
+  .hero-cat {
+    left: 4%;
+    bottom: 15px;
+    font-size: 43px;
+  }
+
+  .hero-content h1 {
+    font-size: 34px;
+  }
+
+  .hero-content p {
+    font-size: 14px;
+  }
+
+  .library-heading h2 {
+    font-size: 23px;
+  }
+
+  .book-collection {
+    gap: 14px;
+  }
+
+  .campaign-book {
+    width: 155px;
+    height: 235px;
+  }
+
+  .book-art {
+    width: 105px;
+    height: 85px;
+  }
+}

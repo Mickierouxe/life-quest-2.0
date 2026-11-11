@@ -15,12 +15,13 @@ import {//Icons - might change these to SVGs later that are better fantasy ones.
 } from 'lucide-react';
 
 import Home from './pages/Home';
-import Campaigns from './pages/Campaigns';
+import Campaigns from './pages/Campaigns/Campaigns';
 import PunchCards from './pages/PunchCards';
 import BurstMode from './pages/BurstMode';
 import Collections from './pages/Collections';
 import LifeLog from './pages/LifeLogs';
 import Accountability from './pages/Accountability';
+import { CampaignProvider } from "./pages/Campaigns/CampaignContext";
 
 
 const pages = {//
@@ -106,16 +107,18 @@ export default function App() {
 
       </aside>
 
-      <main className="main-content">
-        {activePage === 'Home' ? (
-    <Home onNavigate={setActivePage} />
+      
+<CampaignProvider>
+  <main className="main-content">
+    {activePage === 'Home' ? (
+      <Home onNavigate={setActivePage} />
     ) : (
-        <ActivePage onNavigate={function (page: string): void {
-              throw new Error('Function not implemented.');
-            } } />
+      <ActivePage onNavigate={setActivePage} />
     )}
-      </main>
+  </main>
+</CampaignProvider>
 
     </div>
   );
-}
+} 
+  
